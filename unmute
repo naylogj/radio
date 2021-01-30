@@ -1,0 +1,7 @@
+# script to unmute the radio
+
+# set GPIO 26 LOW to turn off 2N5551 to release the mute pin on the DAC
+/usr/bin/raspi-gpio set 26 dl
+# Turn off Mute LED
+/usr/bin/raspi-gpio set 23 dl           # set LOW to indicate we are not on mute
+

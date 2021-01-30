@@ -1,0 +1,26 @@
+{
+  "BBC": "",
+  "BBC Radio 1 FM": "http://bbcmedia.ic.llnwd.net/stream/bbcmedia_radio1_mf_p",
+  "BBC Radio 2 FM": "http://bbcmedia.ic.llnwd.net/stream/bbcmedia_radio2_mf_p",
+  "BBC Radio 3 FM": "http://bbcmedia.ic.llnwd.net/stream/bbcmedia_radio3_mf_p",
+  "BBC Radio 4 FM": "http://bbcmedia.ic.llnwd.net/stream/bbcmedia_radio4fm_mf_p",
+  "BBC Radio 4 LW 198 kHz": "http://bbcmedia.ic.llnwd.net/stream/bbcmedia_radio4lw_mf_p",
+  "BBC Radio 4 Extra": "http://bbcmedia.ic.llnwd.net/stream/bbcmedia_radio4extra_mf_p",
+  "BBC Radio 5 Live": "http://bbcmedia.ic.llnwd.net/stream/bbcmedia_radio5live_mf_p",
+  "BBC Radio 5 Sport Extra": "http://bbcmedia.ic.llnwd.net/stream/bbcmedia_radio5extra_mf_p",
+  "BBC Radio 6 Music": "http://bbcmedia.ic.llnwd.net/stream/bbcmedia_6music_mf_p",
+  "BBC 1Xtra": "http://bbcmedia.ic.llnwd.net/stream/bbcmedia_radio1xtra_mf_p",
+  "BBC World Service English (UK Schedule)": "http://wsdownload.bbc.co.uk/worldservice/meta/live/shoutcast/mp3/eieuk.pls",
+
+  "Soma FM": "",
+  "Covers": "http://ice1.somafm.com/covers-128-aac",
+  "Left Coast 70s": "http://ice1.somafm.com/seventies-128-aac",
+  "Underground 80s": "http://ice1.somafm.com/u80s-128-aac",
+  "Seven Inch Soul": "http://ice1.somafm.com/7soul-128-aac",
+  "PopTron": "http://ice1.somafm.com/poptron-128-aac",
+  "Indie Pop Rocks!": "http://ice1.somafm.com/indiepop-128-aac",
+  "Folk Forward": "http://ice1.somafm.com/folkfwd-128-aac",
+  "BAGeL Radio": "http://ice1.somafm.com/bagel-128-aac",
+  "Groove Salad": "http://ice1.somafm.com/groovesalad-128-aac",
+  "Beat Blender": "http://ice1.somafm.com/beatblender-128-aac"
+}

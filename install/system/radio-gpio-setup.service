@@ -1,0 +1,15 @@
+# Author: Gareth Naylor
+
+[Unit]
+Description=A one-shot run script to setup GPIO pins
+After=syslog.target network.target 
+
+[Service]
+Type=oneshot
+User=pi
+Group=pi
+ExecStart=/home/pi/radio-gpio-setup
+RemainAfterExit=yes
+
+[Install]
+WantedBy=multi-user.target

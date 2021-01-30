@@ -1,0 +1,86 @@
+#!/bin/bash
+
+# default values
+mute_button_pin=13
+
+polling_rate=1
+hold_time=1
+
+blink_time=0.1
+
+onmute=0 # not on mute at startup
+
+process_name="blink_led"
+
+# setup GPIO for mute button
+/usr/bin/raspi-gpio set $mute_button_pin ip pu		# set GPIO to be an input with a pull down
+
+# ------------------------------------------------------------------------
+
+mute_button_low() {
+    /usr/bin/raspi-gpio get $mute_button_pin | grep -q "level=0 fsel=0 func=INPUT"
+}
+
+mute_trigger() {
+    if mute_button_low; then
+        echo "Mute button pressed!"
+        start=$SECONDS
+
+        while mute_button_low; do
+            sleep 0.1
+            low_time=$[ $SECONDS - $start ]
+            if [ "$low_time" -ge "$hold_time" ]; then
+                break
+            fi
+        done
+        echo "Held low for $low_time"
+
+        if [ "$low_time" -ge "$hold_time" ]; then
+            echo "Mute button held low"
+            return 0
+        fi
+    fi
+    return 1
+}
+
+# ------------------------------------------------------------------------
+
+while true; do
+	if mute_trigger; then
+		echo "Toggling mute"
+		# check the current start and act accordingly
+		if [ $onmute == 1 ]; then
+			echo "Unmuting ..."
+			# Kill the process that was blinking the mute LED
+			kill -15 `jobs -p` > /dev/null
+			echo "Stopped blink_on_mute."
+
+			# set GPIO 26 LOW to turn off 2N5551 to release the mute pin on the DAC
+			/usr/bin/raspi-gpio set 26 dl
+
+			# Turn off Mute LED
+			/usr/bin/raspi-gpio set 23 dh	# set LOW to indicate we are not on mute
+			
+			# set onmute value
+			onmute=0
+			sleep 1
+
+		else
+
+			echo "Muting ..."
+			# fork the process to blink the Mute Led - it needs to run in the background
+			nohup /home/pi/blink_on_mute & 1>/dev/null 2>/dev/null
+			echo "Started blink_on_mute."
+
+			# set GPIO 26 HIGH to turn on 2N5551 to enable the mute pin on the DAC
+			/usr/bin/raspi-gpio set 26 dh
+
+			# set onmute value
+			onmute=1
+			sleep 1
+		fi
+ 	fi
+	sleep $polling_rate
+done
+
+exit 0

@@ -1,0 +1,7 @@
+# script to mute the radio
+
+# set GPIO 26 HIGH to turn on 2N5551 to ground the mute pin on the DAC
+/usr/bin/raspi-gpio set 26 dh
+# turn on mute LED
+/usr/bin/raspi-gpio set 23 dh           # set HIGH to indicate we are on mute
+

@@ -1,0 +1,22 @@
+#!/bin/bash
+# script to be run at boot time to do the GPIO setup for:
+
+# DAC Mute
+/usr/bin/raspi-gpio set 26 op pn	# set GPIO 26 as an output, no pull up etc.
+/usr/bin/raspi-gpio set 26 dl		# set LOW (to turn off 2N5551 to unmute DAC)
+
+#DAC Mute LED
+/usr/bin/raspi-gpio set 23 op pn	# set GPIO 23 as an output, no pull up etc.
+/usr/bin/raspi-gpio set 23 dh		# set HIGH to indicate we are on 
+
+# setup GPIO for mute button
+/usr/bin/raspi-gpio set 13 ip pu 	# set GPIO 13 to be an input with a pull down
+
+# setup GPIO 12 - MAX98306 SHUTDOWN control 
+/usr/bin/raspi-gpio set 12 op pd	# set GPIO 12 to be an output with a pull down 
+/usr/bin/raspi-gpio set 12 dh		# set high to turn on AMP
+
+# Play the PiFi Radio On jingle
+/usr/bin/aplay /home/pi/PiFi_Radio-louder.wav 
+
+exit 0

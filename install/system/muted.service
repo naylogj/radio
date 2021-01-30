@@ -1,0 +1,17 @@
+# Author: Gareth Naylor
+
+[Unit]
+Description=A service to control mute/unmute button/led/sound on PiRadio
+After=syslog.target network.target mpd.service
+Requires=mpd.service
+
+[Service]
+Type=simple
+User=pi
+Group=pi
+RuntimeDirectory=/home/pi
+ExecStart=/home/pi/muted
+TimeoutSec=300
+
+[Install]
+WantedBy=multi-user.target
